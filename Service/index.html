@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  	<title>Asian Vacation Rentals</title>
+	<link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container bs-docs-container">
+	  	<div>
+	    	<h2>All Property</h2>
+	    	<ul id="contents" />
+	  	</div>
+	  	<div>
+	    	<h2>Search by ID</h2>
+	    	<input type="text" id="propId" class="form-control" style="width: 50%; display: inline;"/>
+	    	<input type="button" value="Search" class="btn btn-success" onclick="findContent();findPrice();" />
+			<p style="padding-top: 15px;color: #0275d8" id="content" />
+	  	</div>
+		<form id="cico-form" style="display: none;">
+		  <div class="form-group">
+		    <label for="CheckIn">Check In</label>
+		    <input type="date" class="form-control" style="width: 30%;">
+		  </div>
+		  <div class="form-group">
+		    <label for="Checkout">Check Out</label>
+		    <input type="date" class="form-control" style="width: 30%;">
+		  </div>
+		  <button type="submit" class="btn btn-default" onclick="return book();">Book</button>
+		</form>
+	</div>
+  	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+	<script>
+	    var contentUri = 'api/content';
+		var priceUri = 'api/price';
+	    $(document).ready(function () {
+	      // Send an AJAX request
+	      $.getJSON(contentUri)
+	          .done(function (data) {
+	            // On success, 'data' contains a list of contents.
+	            $.each(data, function (key, item) {
+	              // Add a list item for the content.
+	              $('<li>', { text: formatItem(item) }).appendTo($('#contents'));
+	            });
+	          });
+	    });
+			
+	    function formatItem(item) {
+	      return item.Id + ' - ' + item.Title;
+	    }
+			
+		function formatContentItem(item) {
+			return item.Title;
+	    }
+
+	    function findContent() {
+	      var id = $('#propId').val();
+	      $.getJSON(contentUri + '/' + id)
+	         .done(function (data) {
+	            $('#content').append("<strong>" + formatContentItem(data) + "</strong>");
+	         })
+	         .fail(function (jqXHR, textStatus, err) {
+	            $('#content').text('Error: ' + err);
+	         });
+	    }
+
+		function formatPriceItem(item) {
+			return "Daily: $" + item.Daily + ", Weekend: $" + item.Weekend + ", Weekly: $" + item.Weekly;
+	    }
+
+	    function findPrice() {
+			var id = $('#propId').val();
+	      		$.getJSON(priceUri + '/' + id)
+	         	.done(function (data) {
+					$('#content').append("<br>" + formatPriceItem(data));
+					$('#cico-form').show();
+				})
+	          	.fail(function (jqXHR, textStatus, err) {
+	            	$('#content').text('Error Price: ' + err);
+	        });
+	    }
+			
+		function book()
+		{
+		   alert("Book is success");
+		   return true;
+		}
+  	</script>
+</body>
+</html>
