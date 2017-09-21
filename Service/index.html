@@ -3,6 +3,7 @@
 <head>
   	<title>Asian Vacation Rentals</title>
 	<link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 	<div class="container bs-docs-container">
@@ -13,22 +14,23 @@
 	  	<div>
 	    	<h2>Search by ID</h2>
 	    	<input type="text" id="propId" class="form-control" style="width: 50%; display: inline;"/>
-	    	<input type="button" value="Search" class="btn btn-success" onclick="findContent();findPrice();" />
+	    	<input type="button" value="Search" class="btn btn-success" onclick="findContent();findPrice();findAvailability();" />
 			<p style="padding-top: 15px;color: #0275d8" id="content" />
 	  	</div>
 		<form id="cico-form" style="display: none;">
 		  <div class="form-group">
 		    <label for="CheckIn">Check In</label>
-		    <input type="date" class="form-control" style="width: 30%;">
+		    <input type="text" class="form-control" style="width: 30%;" id="ci">
 		  </div>
 		  <div class="form-group">
 		    <label for="Checkout">Check Out</label>
-		    <input type="date" class="form-control" style="width: 30%;">
+		    <input type="text" class="form-control" style="width: 30%;" id="co">
 		  </div>
-		  <button type="submit" class="btn btn-default" onclick="return book();">Book</button>
+		  <button type="submit" class="btn btn-danger" onclick="return book();">Book</button>
 		</form>
 	</div>
-  	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+  	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 	    var contentUri = 'api/content';
 		var priceUri = 'api/price';
@@ -46,7 +48,7 @@
 	    });
 			
 	    function formatItem(item) {
-	      return item.Id + ' - ' + item.Title;
+			return item.Id + ' - ' + item.Title;
 	    }
 			
 		function formatContentItem(item) {
@@ -54,14 +56,14 @@
 	    }
 
 	    function findContent() {
-	      var id = $('#propId').val();
-	      $.getJSON(contentUri + '/' + id)
-	         .done(function (data) {
-	            $('#content').append("<strong>" + formatContentItem(data) + "</strong>");
-	         })
-	         .fail(function (jqXHR, textStatus, err) {
-	            $('#content').text('Error: ' + err);
-	         });
+			var id = $('#propId').val();
+	      	$.getJSON(contentUri + '/' + id)
+	         	.done(function (data) {
+	            	$('#content').append("<strong>" + formatContentItem(data) + "</strong>");
+	         	})
+	         	.fail(function (jqXHR, textStatus, err) {
+	            	$('#content').text('Error: ' + err);
+			});
 	    }
 
 		function formatPriceItem(item) {
@@ -79,12 +81,52 @@
 	            	$('#content').text('Error Price: ' + err);
 	        });
 	    }
+
+		function findAvailability() {
+			var id = $('#propId').val();
+	      		$.getJSON(availabilityUri + '/' + id)
+	         	.done(function (data) {console.log(data);
+					//$('#ci').append("<br>" + formatPriceItem(data));
+					//$('#co').append("<br>" + formatPriceItem(data));
+				})
+	          	.fail(function (jqXHR, textStatus, err) {
+	            	$('#content').text('Error Availability: ' + err);
+	        });
+	    }
 			
-		function book()
-		{
-		   alert("Book is success");
-		   return true;
+		function book() {
+			alert("Book is success");
+			return true;
 		}
+
+		$(function(){  
+		    dateRange=['2017-11-21','2017-11-10','2017-11-18','2017-11-04'];
+		    $('#ci').datepicker({
+				beforeShowDay: function(date) {
+		          	var dateString = jQuery.datepicker.formatDate('yy-mm-dd', date);
+		      		var day = date.getDay();
+		      		if (day == 0 || dateRange.indexOf(dateString) != -1) {
+						return [false]
+		      		} else {
+		        		return [true]
+		      		}
+		  		}
+		    });   
+		});
+		$(function(){  
+		    dateRange=['2017-11-21','2017-11-10','2017-11-18','2017-11-04'];
+		    $('#co').datepicker({
+				beforeShowDay: function(date) {
+		          	var dateString = jQuery.datepicker.formatDate('yy-mm-dd', date);
+		      		var day = date.getDay();
+		      		if (day == 0 || dateRange.indexOf(dateString) != -1) {
+						return [false]
+		      		} else {
+		        		return [true]
+		      		}
+		  		}
+		    });   
+		});
   	</script>
 </body>
 </html>
