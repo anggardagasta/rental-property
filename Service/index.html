@@ -32,16 +32,17 @@
 	<script>
 	    var contentUri = 'api/content';
 		var priceUri = 'api/price';
+		var availabilityUri = 'api/availabilities';
 	    $(document).ready(function () {
-	      // Send an AJAX request
-	      $.getJSON(contentUri)
-	          .done(function (data) {
-	            // On success, 'data' contains a list of contents.
-	            $.each(data, function (key, item) {
-	              // Add a list item for the content.
-	              $('<li>', { text: formatItem(item) }).appendTo($('#contents'));
-	            });
-	          });
+			// Send an AJAX request
+	      	$.getJSON(contentUri)
+	        	.done(function (data) {
+	            	// On success, 'data' contains a list of contents.
+	            	$.each(data, function (key, item) {
+	              	// Add a list item for the content.
+	              	$('<li>', { text: formatItem(item) }).appendTo($('#contents'));
+				});
+	         });
 	    });
 			
 	    function formatItem(item) {

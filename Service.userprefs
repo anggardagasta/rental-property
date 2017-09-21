@@ -7,20 +7,23 @@
       <Breakpoint file="G:\Programming\CSharp\Service\Service\Controllers\ContentController.cs" relfile="Service\Controllers\ContentController.cs" line="31" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Service\index.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Service Status">
     <Files>
-      <File FileName="Service\Controllers\ContentController.cs" Line="31" Column="53" />
+      <File FileName="Service\Controllers\ContentController.cs" Line="4" Column="22" />
       <File FileName="Service\App_Start\WebApiConfig.cs" Line="16" Column="38" />
-      <File FileName="Service\Models\Content.cs" Line="11" Column="17" />
-      <File FileName="Service\Models\Price.cs" Line="12" Column="38" />
-      <File FileName="Service\index.html" Line="6" Column="3" />
+      <File FileName="Service\Models\Content.cs" Line="1" Column="1" />
+      <File FileName="Service\Models\Price.cs" Line="1" Column="1" />
+      <File FileName="Service\index.html" Line="53" Column="22" />
       <File FileName="Service\App_Start\RouteConfig.cs" Line="15" Column="68" />
       <File FileName="Service\Default.aspx" Line="13" Column="1" />
       <File FileName="Service\Default.aspx.cs" Line="12" Column="4" />
       <File FileName="Service\Default.aspx.designer.cs" Line="1" Column="1" />
-      <File FileName="Service\Models\Availability.cs" Line="11" Column="24" />
-      <File FileName="Service\Controllers\PriceController.cs" Line="15" Column="61" />
+      <File FileName="Service\Models\Availability.cs" Line="9" Column="38" />
+      <File FileName="Service\Controllers\PriceController.cs" Line="21" Column="22" />
       <File FileName="Service\dist\css\bootstrap.min.css" Line="1" Column="1" />
+      <File FileName="Service\Controllers\AvailabilitiesController.cs" Line="44" Column="10" />
+      <File FileName="Service\Models\Availabilities.cs" Line="9" Column="3" />
+      <File FileName="Service Status" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MultiItemStartupConfigurations />

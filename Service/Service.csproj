@@ -99,6 +99,8 @@
     <Compile Include="Models\Price.cs" />
     <Compile Include="Models\Availability.cs" />
     <Compile Include="Controllers\PriceController.cs" />
+    <Compile Include="Controllers\AvailabilitiesController.cs" />
+    <Compile Include="Models\Availabilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
