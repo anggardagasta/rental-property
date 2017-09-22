@@ -12,7 +12,7 @@ namespace Service.Controllers
 		public List<Availabilities> GetAvailabilities()
 		{
 			List<Availability> availabilities = new List<Availability>();
-			availabilities.Add(new Availability() { StartDate = "2017-09-24", EndDate = "2017-10-15" });
+			availabilities.Add(new Availability() { StartDate = "2017-10-01", EndDate = "2017-10-04" });
 			availabilities.Add(new Availability() { StartDate = "2017-10-21", EndDate = "2017-10-23" });
 
 			List<Availabilities> avails = new List<Availabilities>();
@@ -31,7 +31,7 @@ namespace Service.Controllers
 		public List<Availabilities> GetAvailabilityById(int id)
 		{
 			List<Availability> availabilities = new List<Availability>();
-			availabilities.Add(new Availability() { StartDate = "2017-09-24", EndDate = "2017-10-15" });
+			availabilities.Add(new Availability() { StartDate = "2017-10-01", EndDate = "2017-10-04" });
 			availabilities.Add(new Availability() { StartDate = "2017-10-21", EndDate = "2017-10-23" });
 
 			List<Availabilities> avails = new List<Availabilities>();
